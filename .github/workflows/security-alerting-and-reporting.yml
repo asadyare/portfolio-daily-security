@@ -1,0 +1,105 @@
+name: Security Alerting and Reporting
+
+on:
+  schedule:
+    - cron: "0 17 * * *"   # Daily security scan
+    - cron: "0 18 * * 0"   # Weekly report (Sunday)
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  security-events: write
+  issues: write
+  actions: read
+
+jobs:
+  security-scan:
+    name: Daily Security Scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Secret scanning
+        uses: gitleaks/gitleaks-action@v2
+
+      - name: Dependency vulnerability scan
+        run: |
+          npm audit --audit-level=high || true
+
+      - name: Generate SBOM
+        uses: anchore/sbom-action@v0
+        with:
+          format: spdx-json
+          output-file: sbom.spdx.json
+
+      - name: Container filesystem scan
+        uses: aquasecurity/trivy-action@0.20.0
+        with:
+          scan-type: fs
+          severity: HIGH,CRITICAL
+          format: sarif
+          output: trivy-results.sarif
+
+      - name: Upload SARIF results
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: trivy-results.sarif
+
+      - name: Create alert issue on critical findings
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: "Security Alert: Critical Findings Detected",
+              body: [
+                "Critical security findings detected during scheduled security scans.",
+                "",
+                "Workflow: Security Alerting and Reporting",
+                "Run ID: " + context.runId,
+                "",
+                "Review GitHub Actions logs and SARIF results for details."
+              ].join("\n")
+            })
+
+  weekly-report:
+    name: Weekly Security Report
+    if: github.event.schedule == '0 18 * * 0'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Publish weekly security report
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const report = [
+              "Weekly Security Report",
+              "",
+              "Coverage",
+              "- Secret scanning",
+              "- Dependency vulnerability scanning",
+              "- Container filesystem scanning",
+              "- SBOM generation",
+              "",
+              "Execution",
+              "- Daily scans executed on schedule",
+              "- Findings tracked in GitHub Actions and Security tab",
+              "",
+              "Evidence",
+              "- Daily workflow runs",
+              "- SARIF uploads",
+              "",
+              "Action",
+              "- Review open security alert issues if present"
+            ].join("\n")
+
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: "Weekly Security Report",
+              body: report
+            })

@@ -1,20 +1,25 @@
 # Security Coverage Matrix
 
-- Secrets
+## Secrets
+
 - Tool Gitleaks
-- Validation GitHub Actions logs
+- Trigger Daily schedule
+- Evidence GitHub Actions logs
 
 ## Dependencies
 
 - Tool npm audit
-- Validation Workflow output
+- Trigger Daily schedule
+- Evidence Workflow output
 
 ## Containers
 
-- Tool Trivy
-- Validation SARIF upload
+- Tool Trivy filesystem scan
+- Trigger Daily schedule
+- Evidence SARIF upload and Security tab
 
 ## Supply Chain
 
 - Tool SBOM generation
-- Validation Stored artifact
+- Trigger Daily schedule
+- Evidence Stored artifact

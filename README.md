@@ -1,6 +1,10 @@
 # Portfolio Daily Security
 
-[![CI Status Badge](https://github.com/asadyare/portfolio-daily-security/actions/workflows/daily-security.yml/badge.svg)](https://github.com/asadyare/portfolio-daily-security/actions/workflows/daily-security.yml)
+[![Daily Security](https://github.com/asadyare/portfolio-daily-security/actions/workflows/daily-security.yml/badge.svg)](https://github.com/asadyare/portfolio-daily-security/actions/workflows/daily-security.yml)
+
+![Security](https://img.shields.io/badge/security-automated-blue)
+![Schedule](https://img.shields.io/badge/schedule-daily-green)
+![Scope](https://img.shields.io/badge/scope-post--merge-orange)
 
 ## Overview
 
@@ -22,6 +26,9 @@ PR based security misses newly published CVEs. This repository closes that gap b
 
 - Runs daily at 17:00 UTC
 - Supports manual execution
+- Weekly Reporting
+  A weekly security report is generated automatically.
+- Reports summarise daily scan execution and reference supporting evidence in GitHub Actions  and the Security tab.
 
 ### Evidence
 
