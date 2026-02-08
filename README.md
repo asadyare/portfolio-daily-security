@@ -10,7 +10,8 @@ This repository runs scheduled security scans across the portfolio. It detects n
 
 PR based security misses newly published CVEs. This repository closes that gap by scanning on a fixed schedule.
 
-- Security Coverage
+## Security Coverage
+
 - Secret scanning
 - Dependency vulnerability scanning
 - Container filesystem scanning
