@@ -1,6 +1,6 @@
 # Portfolio Daily Security
 
-[![Daily Security](https://github.com/asadyare/portfolio-daily-security/actions/workflows/daily-security.yml/badge.svg)](https://github.com/asadyare/portfolio-daily-security/actions/workflows/daily-security.yml)
+[![Security alerting and reporting](https://github.com/asadyare/portfolio-daily-security/actions/workflows/security-alerting-and-reporting.yml/badge.svg)](https://github.com/asadyare/portfolio-daily-security/actions/workflows/security-alerting-and-reporting.yml)
 
 ![Security](https://img.shields.io/badge/security-automated-blue)
 ![Schedule](https://img.shields.io/badge/schedule-daily-green)
