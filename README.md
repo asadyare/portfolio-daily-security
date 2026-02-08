@@ -22,17 +22,44 @@ PR based security misses newly published CVEs. This repository closes that gap b
 - SBOM generation
 - Security result reporting
 
-### Schedule
+## Scheduling
 
-- Runs daily at 17:00 UTC
-- Supports manual execution
-- Weekly Reporting
-  A weekly security report is generated automatically.
-- Reports summarise daily scan execution and reference supporting evidence in GitHub Actions  and the Security tab.
+### Daily Execution
 
-### Evidence
+- Runs every day at 17:00 UTC.
+- Performs full security scanning.
+- Automatically creates a GitHub Issue if critical findings are detected.
 
-All findings appear in GitHub Actions logs and uploaded security reports.
+### Weekly Reporting
+
+- Runs every Sunday at 18:00 UTC.
+- Creates a single weekly security report issue.
+- Summarises scan coverage and points to existing evidence.
+
+### Alerting Model
+
+Critical findings trigger an automatic GitHub Issue.
+Alerts link directly to the workflow run that detected the issue.
+No external services are required.
+Alerts remain as a permanent audit trail.
+
+### Weekly Reporting Model
+
+One issue is created per week.
+Reports summarise coverage, execution, and evidence.
+Open security alert issues are referenced for follow up.
+
+### Workflow Design
+
+This repository uses a single GitHub Actions workflow.
+The workflow handles daily scanning, alerting, and weekly reporting.
+This avoids duplication and keeps logic easy to reason about.
+
+## Evidence and Auditability
+
+All scan results are available in GitHub Actions logs.
+SARIF results appear in the GitHub Security tab.
+Alerts and reports are tracked as GitHub Issues.
 
 ## Related Repositories
 
