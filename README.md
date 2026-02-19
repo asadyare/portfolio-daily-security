@@ -85,13 +85,15 @@ Alerts and reports are tracked as GitHub Issues.
 
 Frontend Application
 
-1. [Fronteend Application](https://github.com/asadyare/portfolio-frontend)
+       1. [Fronteend Application](https://github.com/asadyare/portfolio-frontend)
 
 Shared CI and Security Workflows
-2. [CI CD and security pipelines](https://github.com/asadyare/portfolio-ci-cd-security)
+
+       2. [CI CD and security pipelines](https://github.com/asadyare/portfolio-ci-cd-security)
 
 Kubernetes Security Projects
-3. [Kubernetes Deployment and security](https://github.com/asadyare/portfolio-k8s-microservices-deployment)
+
+       3. [Kubernetes Deployment and security](https://github.com/asadyare/portfolio-k8s-microservices-deployment)
 
 ## Central Portfolio Reference
 
