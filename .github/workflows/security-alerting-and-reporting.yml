@@ -35,7 +35,7 @@ jobs:
           output-file: sbom.spdx.json
 
       - name: Container filesystem scan
-        uses: aquasecurity/trivy-action@0.20.0
+        uses: aquasecurity/trivy-action@v0.20.0
         with:
           scan-type: fs
           severity: HIGH,CRITICAL
